@@ -41,7 +41,6 @@ export default function GameHUD({
     return (
         <VStack w="full" spacing={2.5} align="stretch" justify="center">
             {/* Tactical Gear Inventory Box */}
-            {/* Tactical Gear Inventory Box */}
             <Box
                 p={2.5}
                 bg="gray.850"
@@ -61,12 +60,12 @@ export default function GameHUD({
                     Tactical Gear
                 </Text>
                 
-                {/* 2-Column Balanced Grid (3 rows × 2 cols = 6 clean slots) */}
-                <SimpleGrid columns={3} spacing={1.5}>
+                {/* 2-Column Grid on desktop sidebar (fits 240px perfectly), 3-Column on mobile */}
+                <SimpleGrid columns={{base: 3, sm: 3, lg: 2}} spacing={1.5}>
                     {/* 1. Golden Key */}
                     <HStack
                         justify="space-between"
-                        px={2.5}
+                        px={2}
                         py={1.5}
                         bg="gray.900"
                         rounded="md"
@@ -74,9 +73,9 @@ export default function GameHUD({
                         borderColor={inventory.key > 0 ? 'yellow.500/50' : 'whiteAlpha.100'}
                         opacity={inventory.key > 0 ? 1 : 0.45}
                     >
-                        <HStack spacing={1.5}>
-                            <Box p={0.5}>{C[T.KEY]?.icon}</Box>
-                            <Text fontSize="2xs" color="gray.300" fontWeight="semibold">
+                        <HStack spacing={1.5} minW={0}>
+                            <Box p={0.5} shrink={0}>{C[T.KEY]?.icon}</Box>
+                            <Text fontSize="2xs" color="gray.300" fontWeight="semibold" noOfLines={1}>
                                 Key
                             </Text>
                         </HStack>
@@ -95,7 +94,7 @@ export default function GameHUD({
                     {/* 2. Water Pail */}
                     <HStack
                         justify="space-between"
-                        px={2.5}
+                        px={2}
                         py={1.5}
                         bg="gray.900"
                         rounded="md"
@@ -103,9 +102,9 @@ export default function GameHUD({
                         borderColor={inventory.pail > 0 ? 'cyan.500/50' : 'whiteAlpha.100'}
                         opacity={inventory.pail > 0 ? 1 : 0.45}
                     >
-                        <HStack spacing={1.5}>
-                            <Box p={0.5}>{C[T.PAIL]?.icon}</Box>
-                            <Text fontSize="2xs" color="gray.300" fontWeight="semibold">
+                        <HStack spacing={1.5} minW={0}>
+                            <Box p={0.5} shrink={0}>{C[T.PAIL]?.icon}</Box>
+                            <Text fontSize="2xs" color="gray.300" fontWeight="semibold" noOfLines={1}>
                                 Pail
                             </Text>
                         </HStack>
@@ -124,7 +123,7 @@ export default function GameHUD({
                     {/* 3. Ladder */}
                     <HStack
                         justify="space-between"
-                        px={2.5}
+                        px={2}
                         py={1.5}
                         bg="gray.900"
                         rounded="md"
@@ -132,9 +131,9 @@ export default function GameHUD({
                         borderColor={inventory.ladder > 0 ? 'emerald.500/50' : 'whiteAlpha.100'}
                         opacity={inventory.ladder > 0 ? 1 : 0.45}
                     >
-                        <HStack spacing={1.5}>
-                            <Box p={0.5}>{C[T.LADDER]?.icon}</Box>
-                            <Text fontSize="2xs" color="gray.300" fontWeight="semibold">
+                        <HStack spacing={1.5} minW={0}>
+                            <Box p={0.5} shrink={0}>{C[T.LADDER]?.icon}</Box>
+                            <Text fontSize="2xs" color="gray.300" fontWeight="semibold" noOfLines={1}>
                                 Ladder
                             </Text>
                         </HStack>
@@ -153,7 +152,7 @@ export default function GameHUD({
                     {/* 4. Gas Mask */}
                     <HStack
                         justify="space-between"
-                        px={2.5}
+                        px={2}
                         py={1.5}
                         bg={hasGasMask ? 'teal.950/60' : 'gray.900'}
                         rounded="md"
@@ -161,9 +160,9 @@ export default function GameHUD({
                         borderColor={hasGasMask ? 'teal.400/60' : 'whiteAlpha.100'}
                         opacity={hasGasMask ? 1 : 0.45}
                     >
-                        <HStack spacing={1.5}>
-                            <Box p={0.5}>{C[T.MASK]?.icon}</Box>
-                            <Text fontSize="2xs" color="gray.300" fontWeight="semibold">
+                        <HStack spacing={1.5} minW={0}>
+                            <Box p={0.5} shrink={0}>{C[T.MASK]?.icon}</Box>
+                            <Text fontSize="2xs" color="gray.300" fontWeight="semibold" noOfLines={1}>
                                 Mask
                             </Text>
                         </HStack>
@@ -179,10 +178,10 @@ export default function GameHUD({
                         </Badge>
                     </HStack>
                     
-                    {/* 5 & 6. Hammer (Spans 2 columns when forged) OR Separate Rock + Stick */}
+                    {/* 5 & 6. Hammer OR Separate Rock + Stick */}
                     {isHammerCrafted ? (
                         <HStack
-                            gridColumn="span 2"
+                            gridColumn={{base: 'span 2', lg: 'span 2'}}
                             justify="space-between"
                             px={2.5}
                             py={1.5}
@@ -191,10 +190,10 @@ export default function GameHUD({
                             border="1px solid"
                             borderColor="amber.400/60"
                         >
-                            <HStack spacing={1.5}>
-                                <GiThorHammer className="w-4 h-4 text-amber-400"/>
-                                <Text fontSize="2xs" color="amber-300" fontWeight="bold">
-                                    Breaker Hammer
+                            <HStack spacing={1.5} minW={0}>
+                                <GiThorHammer className="w-4 h-4 text-amber-400 shrink-0"/>
+                                <Text fontSize="2xs" color="amber-300" fontWeight="bold" noOfLines={1}>
+                                    Breaker
                                 </Text>
                             </HStack>
                             <Badge colorScheme="orange" variant="solid" fontSize="2xs" px={2} py={0.2} rounded="sm">
@@ -206,7 +205,7 @@ export default function GameHUD({
                             {/* Rock */}
                             <HStack
                                 justify="space-between"
-                                px={2.5}
+                                px={2}
                                 py={1.5}
                                 bg="gray.900"
                                 rounded="md"
@@ -214,9 +213,9 @@ export default function GameHUD({
                                 borderColor={inventory.rock > 0 ? 'stone.500/50' : 'whiteAlpha.100'}
                                 opacity={inventory.rock > 0 ? 1 : 0.45}
                             >
-                                <HStack spacing={1.5}>
-                                    <Box p={0.5}>{C[T.ROCK]?.icon}</Box>
-                                    <Text fontSize="2xs" color="gray.300" fontWeight="semibold">
+                                <HStack spacing={1.5} minW={0}>
+                                    <Box p={0.5} shrink={0}>{C[T.ROCK]?.icon}</Box>
+                                    <Text fontSize="2xs" color="gray.300" fontWeight="semibold" noOfLines={1}>
                                         Rock
                                     </Text>
                                 </HStack>
@@ -235,7 +234,7 @@ export default function GameHUD({
                             {/* Stick */}
                             <HStack
                                 justify="space-between"
-                                px={2.5}
+                                px={2}
                                 py={1.5}
                                 bg="gray.900"
                                 rounded="md"
@@ -243,9 +242,9 @@ export default function GameHUD({
                                 borderColor={inventory.stick > 0 ? 'amber.600/50' : 'whiteAlpha.100'}
                                 opacity={inventory.stick > 0 ? 1 : 0.45}
                             >
-                                <HStack spacing={1.5}>
-                                    <Box p={0.5}>{C[T.STICK]?.icon}</Box>
-                                    <Text fontSize="2xs" color="gray.300" fontWeight="semibold">
+                                <HStack spacing={1.5} minW={0}>
+                                    <Box p={0.5} shrink={0}>{C[T.STICK]?.icon}</Box>
+                                    <Text fontSize="2xs" color="gray.300" fontWeight="semibold" noOfLines={1}>
                                         Stick
                                     </Text>
                                 </HStack>
@@ -294,7 +293,7 @@ export default function GameHUD({
                 </Button>
             )}
             
-            {/* Controls Container: Left Action Button, Right-Handed Visible D-Pad */}
+            {/* Controls Container */}
             <Flex
                 direction={{base: 'row', lg: 'column'}}
                 align="center"
@@ -335,7 +334,7 @@ export default function GameHUD({
                     </Button>
                 </Tooltip>
                 
-                {/* Right Side: High-Contrast D-Pad */}
+                {/* Right Side: D-Pad */}
                 <Flex direction="column" align="center" gap={1.5}>
                     {/* UP */}
                     <IconButton
