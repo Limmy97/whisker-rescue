@@ -34,7 +34,7 @@ export function useGameLoop(levelData, onWinLevel, isPaused = false) {
     });
     
     const [tacticalMessage, setTacticalMessage] = useState('Sector active. Stand by for tactical updates.');
-    const [isTacticalAlert, setIsTacticalAlert] = useState(false); // <--- Flash trigger
+    const [isTacticalAlert, setIsTacticalAlert] = useState(false);
     const [timeLeft, setTimeLeft] = useState(levelData.timeLimit || 90);
     const [isWon, setIsWon] = useState(false);
     const [isLost, setIsLost] = useState(false);
