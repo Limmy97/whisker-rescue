@@ -64,7 +64,7 @@ export const TILE_CONFIG = {
     [TILE_TYPES.FLOOR]: {
         label: 'Floor',
         icon: null,
-        bg: 'bg-slate-850/60',
+        bg: 'bg-slate-700/60',
         border: 'border-slate-750/30',
         isWalkable: true,
     },
